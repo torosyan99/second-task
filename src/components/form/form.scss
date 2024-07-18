@@ -1,0 +1,32 @@
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  .form__input,
+  .form__item {
+    width: calc(50% - 6px);
+    padding: 8px;
+    border: 1px solid #000;
+  }
+  .form__description {
+    padding: 8px;
+    width: 100%;
+    resize: none;
+    border: 1px solid #000;
+  }
+
+  .form__item {
+    display: flex;
+    gap: 0 5px;
+    position: relative;
+  }
+
+  .form__item-input {
+    flex-grow: 1;
+  }
+
+  .form__calendar-button {
+    cursor: pointer;
+  }
+}
