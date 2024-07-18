@@ -10,10 +10,10 @@ function getFirstDayMonth(year, month) {
   return new Date(year, month, 1).getDay();
 }
 
-function Calendar() {
+function Calendar({ setState = () => {} }) {
   const [date, setDate] = useState(new Date());
   const [days, setDays] = useState([]);
-
+  const month = date.toLocaleString("en-us", { month: "long" });
   useEffect(() => {
     const monthDays = getDays(date.getFullYear(), date.getMonth() + 1);
     let firstDayMonth = getFirstDayMonth(date.getFullYear(), date.getMonth());
@@ -29,20 +29,36 @@ function Calendar() {
       for (let d = 1; d <= 7; d++) {
         if (d == firstDayMonth && !bool) bool = true;
         if (bool) {
-          numDay++;
-
-          if (new Date() > date && date.getDate() >= numDay) {
+          let num = numDay++;
+          if (new Date() > date && date.getDate() >= num) {
             divArr.push(
               <button
                 className="calendar__button"
                 style={{ color: "gray" }}
+                type="button"
                 disabled
               >
-                {numDay}
+                {num}
               </button>
             );
           } else {
-            divArr.push(<button className="calendar__button">{numDay}</button>);
+            divArr.push(
+              <button
+                className="calendar__button"
+                type="button"
+
+                onClick={() => {
+                  setState((state) => {
+                    return {
+                      ...state,
+                      data: `${num} ${month} ${date.getFullYear()}`,
+                    };
+                  });
+                }}
+              >
+                {num}
+              </button>
+            );
           }
         } else {
           divArr.push(<span></span>);
@@ -75,14 +91,13 @@ function Calendar() {
             <use xlinkHref="./images/icons.svg#arrow-prev"></use>
           </svg>
         </button>
-        <h5>{date.toLocaleString("en-us", { month: "long" })}</h5>
+        <h5>{month}</h5>
         <button
           type="button"
           onClick={() =>
             setDate((date) => {
               const newDate = new Date(date);
               newDate.setMonth(newDate.getMonth() + 1);
-              console.log(date);
               return newDate;
             })
           }

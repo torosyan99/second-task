@@ -2,11 +2,16 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const listSlice = createSlice({
   name: "LIST",
-  initialState: JSON.parse(localStorage.getItem("list")) || [],
+  initialState: JSON.parse(localStorage.getItem("list")) || {
+    id: 1,
+    data: [],
+  },
   reducers: {
     addListItem: (state, action) => {
-        console.log(action)
-      state = [...state, action.payload];
+      state.data = [...state.data, action.payload];
+      state.id++;
+
+      localStorage.setItem("list", JSON.stringify(state, null, 1));
       return state;
     },
   },

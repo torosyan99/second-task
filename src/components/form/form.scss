@@ -17,16 +17,33 @@
   }
 
   .form__item {
+    width: 40%;
     display: flex;
     gap: 0 5px;
     position: relative;
+    align-items: center;
   }
 
   .form__item-input {
     flex-grow: 1;
+    width: 100%;
   }
 
   .form__calendar-button {
     cursor: pointer;
+    height: 24px;
+
+    &:hover svg {
+      stroke: #4e4ef4;
+    }
+  }
+
+  .form__button {
+    cursor: pointer;
+    stroke: #000;
+
+    &:hover {
+      stroke: #4e4ef4;
+    }
   }
 }

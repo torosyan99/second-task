@@ -35,4 +35,12 @@
             d="M8 13C8 13.5523 7.55228 14 7 14C6.44772 14 6 13.5523 6 13C6 12.4477 6.44772 12 7 12C7.55228 12 8 12.4477 8 13Z"
             fill="#1C274C" />
     </symbol>
+    <symbol id='plus'>
+        <path d="M4 12H20M12 4V20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </symbol>
+    <symbol id='arrow-bottom' viewBox="0 0 24 24" fill="none">
+        <path d="M19.5 8.5L12.5 15.5L5.5 8.5"  stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round" />
+
+    </symbol>
 </svg>
