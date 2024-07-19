@@ -1,15 +1,16 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import ListItem from "./ListItem";
 
 import "./list.scss";
-import ListItem from "./ListItem";
 
 function List() {
   const list = useSelector((state) => state.list.data);
+
   return (
     <ul className="list">
       {list.map((item) => {
-        return <ListItem item={item} />
+        return <ListItem key={item.id} item={item} />
       })}
     </ul>
   );

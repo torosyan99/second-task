@@ -19,6 +19,7 @@ body {
 span,
 svg {
   pointer-events: none;
+  flex-shrink: 0;
 }
 
 input,
@@ -31,6 +32,7 @@ select {
   background-color: transparent;
   cursor: pointer;
   border: none;
+  width: auto;
 
   &:focus {
     border: none;

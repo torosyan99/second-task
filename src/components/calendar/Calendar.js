@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 import "./calendar.scss";
+import { changeState } from "../../store/listSlice";
+import { useDispatch } from "react-redux";
 
 function getDays(year, month) {
   return new Date(year, month, 0).getDate();
@@ -10,20 +12,20 @@ function getFirstDayMonth(year, month) {
   return new Date(year, month, 1).getDay();
 }
 
-function Calendar({ setState = () => {} }) {
+function Calendar() {
   const [date, setDate] = useState(new Date());
   const [days, setDays] = useState([]);
   const month = date.toLocaleString("en-us", { month: "long" });
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const monthDays = getDays(date.getFullYear(), date.getMonth() + 1);
     let firstDayMonth = getFirstDayMonth(date.getFullYear(), date.getMonth());
-
     const buttons = [];
-
     if (!firstDayMonth) firstDayMonth = 7;
-
     let bool = false;
     let numDay = 0;
+    let key = 1;
     for (let i = 1; i <= monthDays + firstDayMonth - 1; i += 7) {
       const divArr = [];
       for (let d = 1; d <= 7; d++) {
@@ -36,6 +38,7 @@ function Calendar({ setState = () => {} }) {
                 className="calendar__button"
                 style={{ color: "gray" }}
                 type="button"
+                key={key}
                 disabled
               >
                 {num}
@@ -46,14 +49,15 @@ function Calendar({ setState = () => {} }) {
               <button
                 className="calendar__button"
                 type="button"
+                key={key}
 
                 onClick={() => {
-                  setState((state) => {
-                    return {
-                      ...state,
-                      data: `${num} ${month} ${date.getFullYear()}`,
-                    };
-                  });
+                  dispatch(
+                    changeState({
+                      key: "data",
+                      value: `${num} ${month} ${date.getFullYear()}`,
+                    })
+                  );
                 }}
               >
                 {num}
@@ -61,13 +65,14 @@ function Calendar({ setState = () => {} }) {
             );
           }
         } else {
-          divArr.push(<span></span>);
+          divArr.push(<span key={key}></span>);
         }
-
+ 
+        key++
         if (numDay == monthDays) break;
       }
 
-      const div = <div className="calendar__item">{divArr}</div>;
+      const div = <div className="calendar__item" key={key}>{divArr}</div>;
       buttons.push(div);
     }
 
@@ -107,7 +112,6 @@ function Calendar({ setState = () => {} }) {
           </svg>
         </button>
       </div>
-
       {days}
     </div>
   );

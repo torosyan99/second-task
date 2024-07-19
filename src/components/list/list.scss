@@ -18,33 +18,49 @@
     background-color: gray;
   }
 
-  .list__bottom {
+  .list__item {
+    border-bottom: 1px solid rgb(0, 0, 0);
+    padding-bottom: 5px;
+  }
+
+  .list__item-bottom {
     overflow: hidden;
   }
 
   .list__description {
     padding: 10px;
   }
+
   .list__item-top {
     width: 100%;
     display: flex;
     gap: 0 20px;
     align-items: center;
     padding: 10px;
-    cursor: pointer;
+  }
+
+  .list__button-arrow {
+    height: 24px;
+    stroke: #000;
 
     &:hover {
-      background-color: rgb(239, 239, 239);
-      .list__item-arrow {
-        stroke: #4e4ef4;
-      }
+      stroke: #4e4ef4;
     }
   }
-  .list__item-date {
+
+  .list__date {
     margin-left: auto;
   }
 
-  .list__item-arrow {
-    stroke: #000;
+  .list__edit {
+    &:hover {
+      fill: #4e4ef4;
+    }
+  }
+
+  .list__delete {
+    &:hover {
+      fill: red;
+    }
   }
 }

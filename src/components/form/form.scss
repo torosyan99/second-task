@@ -5,7 +5,8 @@
 
   .form__input,
   .form__item {
-    width: calc(50% - 6px);
+    max-width: calc(50% - 6px);
+    flex-grow: 1;
     padding: 8px;
     border: 1px solid #000;
   }
@@ -30,20 +31,24 @@
   }
 
   .form__calendar-button {
-    cursor: pointer;
     height: 24px;
+  }
 
-    &:hover svg {
+  .form__button,
+  .form__edit,
+  .form__calendar-button  {
+    cursor: pointer;
+    stroke: #000;
+    &:hover {
       stroke: #4e4ef4;
     }
   }
-
-  .form__button {
+  .form__close-edit {
     cursor: pointer;
     stroke: #000;
 
     &:hover {
-      stroke: #4e4ef4;
+      stroke: red;
     }
   }
 }
