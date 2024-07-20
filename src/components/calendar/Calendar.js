@@ -30,8 +30,10 @@ function Calendar() {
       const divArr = [];
       for (let d = 1; d <= 7; d++) {
         if (d == firstDayMonth && !bool) bool = true;
+
         if (bool) {
-          let num = numDay++;
+          let num = ++numDay;
+
           if (new Date() > date && date.getDate() >= num) {
             divArr.push(
               <button

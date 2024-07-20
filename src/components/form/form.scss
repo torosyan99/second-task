@@ -37,8 +37,8 @@
   .form__button,
   .form__edit,
   .form__calendar-button  {
-    cursor: pointer;
     stroke: #000;
+    cursor: pointer;
     &:hover {
       stroke: #4e4ef4;
     }
